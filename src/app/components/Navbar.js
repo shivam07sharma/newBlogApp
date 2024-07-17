@@ -25,7 +25,7 @@ const Navbar = () => {
             {user ? 
           <><li><MenuButton onClick={()=>setUser(null)} route={"/"} symbol={"logout"} text={"LOGOUT"}/></li>
             <li><MenuButton route={"/Newpost"} symbol={'add_circle'} text={'NEW POST'}/></li>
-            <li><MenuButton route={"/GetBlogsByUsername/"+user.username} symbol={'profile'} text={'MY BLOGS'}/></li></>
+            <li><MenuButton route={"/GetBlogsByUsername/"+user.username} symbol={'person'} text={'MY BLOGS'}/></li></>
 
          :<>
             <li><MenuButton route={"/login"} symbol={"login"} text={"LOGIN"}/></li>

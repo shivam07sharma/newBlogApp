@@ -37,7 +37,7 @@ const FullPost = () => {
           </div>
         <div className='mx-5 flex justify-between'>
           <div className='w-fit h-fit px-3 py-1 mb-2 rounded-md bg-black hover:bg-lime-400 text-white text-base font-medium'>{blog.category.toUpperCase()}</div>
-          <div className="w-fit h-fit px-3 py-1 text-black mr-5 hover:bg-lime-400 rounded-md text-base font-medium">{blog.created.slice(0,10)}</div>
+          <div className="w-fit h-fit px-3 py-1 text-gray-700 mr-5 hover:bg-lime-400 rounded-md text-base font-medium">{blog.created.slice(0,10)}</div>
           </div>
           <div className="w-full h-max px-5 py-3 my-2 text-base md:text-lg text-gray-600">
             {blog.content}      
