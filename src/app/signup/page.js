@@ -11,6 +11,7 @@ const [Success,setSuccess]=useState(false);
     formState: { errors },
   } = useForm();
   const onSubmit = async(data) => {
+    console.log(data);
     const dp=dpGenerator();
     fetch("/api/createaccount", { 
       method: "POST",
@@ -26,7 +27,7 @@ const [Success,setSuccess]=useState(false);
   return (
     <>
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="w-11/12 md:w-[80vmin] h-max mx-auto my-10 shadow-lg shadow-[#003135] rounded-3xl flex flex-col justify-center px-6 ">
+      <div className="w-screen md:w-[80vmin] h-max mx-auto my-3 md:my-10 md:shadow-lg shadow-[grey] rounded-3xl flex flex-col justify-center px-6 ">
         <div className="w-11/12 md:w-[80vmin] h-max mx-auto my-5  flex ">
           <div className='flex flex-col text-4xl font-bold my-9'>
             <span>SIGN UP</span><span className="material-symbols-outlined ml-2"></span>
@@ -35,13 +36,13 @@ const [Success,setSuccess]=useState(false);
         </div>
         <div className='w-full flex flex-col justify-center h-max gap-5'>
           <div className="w-[80vmin] md:w-3/5 h-10 rounded-xl">
-            <input type="text"  className="w-full h-10 rounded-xl bg-[#e7e7e7] outline-[#003135] border-none px-3 text-wrap outline-2" placeholder='Enter Username'  {...register("Username",{ required:true,message:"All Fields are required*"} )}/>
+            <input type="text"  className="w-full h-10 rounded-xl bg-[#e7e7e7] outline-[black] border-none px-3 text-wrap outline-2" placeholder='Enter Username'  {...register("Username",{ required:true,message:"All Fields are required*"} )}/>
           </div>
-          <div className="w-[80vmin] md:w-3/5 h-10 rounded-xl  outline-[#003135] flex justify-between">
-            <input type='password' className="w-full h-10 rounded-xl bg-[#e7e7e7] outline-2 outline-[#003135] border-none px-3 " placeholder='Enter Password'  {...register("Password",{ required:true,message:"All Fields are required*", min:4, max:20 } )}/>
+          <div className="w-[80vmin] md:w-3/5 h-10 rounded-xl  outline-[black] flex justify-between">
+            <input type='password' className="w-full h-10 rounded-xl bg-[#e7e7e7] outline-2 outline-[black] border-none px-3 " placeholder='Enter Password'  {...register("Password",{ required:true,message:"All Fields are required*", min:4, max:20 } )}/>
           </div>
-          <div className="w-[80vmin] md:w-3/5 h-10 rounded-xl  outline-[#003135] flex justify-between">
-            <input type='password' className="w-full h-10 rounded-xl bg-[#e7e7e7] outline-2 outline-[#003135] border-none px-3 " placeholder='Confirm Password'  {...register("Confirm-Password",{ required:"All Fields are required*"  } )}/>
+          <div className="w-[80vmin] md:w-3/5 h-10 rounded-xl  outline-[black] flex justify-between">
+            <input type='password' className="w-full h-10 rounded-xl bg-[#e7e7e7] outline-2 outline-[black] border-none px-3 " placeholder='Confirm Password'  {...register("Confirm-Password",{ required:"All Fields are required*"  } )}/>
 
           </div>
           <div className='flex items-center gap-1 text-sm'> <input type="checkbox" name='Remember' {...register("Terms", { required: "You must agree to the Terms & Conditions." })}/> <label htmlFor="Remember" >I Agree all Terms & Conditions</label> 
@@ -51,7 +52,7 @@ const [Success,setSuccess]=useState(false);
           {error && <ErrorPopup text={"Usename Already Exists, Try Another or Try Logging In"}/>}
 
         </div>
-        <div><button type={'submit'} className='w-32 h-9 grid place-content-center bg-[#003135] rounded-full text-white my-8 active:bg-slate-600'>SIGN UP</button></div>
+        <div><button type={'submit'} className='w-32 h-9 grid place-content-center bg-[black] rounded-full text-white my-8 active:bg-lime-400'>SIGN UP</button></div>
         <div className='flex justify-start text-sm gap-1 mb-11'><span>Already have an account? </span><span><Link href="/login" className='text-[#0fafaf] active:text-slate-600'>Log In</Link></span></div>
       </div >
       </form>

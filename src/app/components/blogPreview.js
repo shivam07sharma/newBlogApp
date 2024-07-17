@@ -11,7 +11,7 @@ const BlogPreview = ({ image, title, content, author, date,category, id }) => {
   }
   return (
     <>
-     <Link href={`/BlogPost/${id}`}> <div className=' shadow-xl w-[94vw] md:w-[80vmin]  h-48 mx-auto rounded-lg my-3 flex items-center '>
+     <Link href={`/BlogPost/${id}`}> <div className=' shadow-xl w-[98vw] md:w-[80vmin]  h-48 mx-auto rounded-lg my-3 flex items-center '>
       
         <div className="w-2/5  h-[90%] grid place-content-center rounded-md overflow-hidden bg-gray-200 mx-2">
           <img src={image||"/BlogImages/defaultBlogimg.jpeg"} alt={title} className='w-full h-auto max-h-full' />

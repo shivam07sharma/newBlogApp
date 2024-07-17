@@ -4,9 +4,6 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import {UserContext} from '../../../context/UserContext';
 import  {useRouter} from 'next/navigation';
-import BlogPreview from '../components/blogPreview';
-
-
 const Login = () => {
   const {user,setUser}=useContext(UserContext);
   const [hidePass, sethidePass] = useState(true);
@@ -23,15 +20,9 @@ const Login = () => {
   useEffect(()=>{
     setUser(userData);
   },[userData])
-  const SuccessfullLogin=()=>{
-   return (<div className="w-full h-full overscroll-none bg-[#efe9e9e6] flex flex-col justify-center items-center absolute z-10">
-      <div className="w-[35vmin] h-[35vmin] rounded-full bg-[#0fa4af] shadow-lg shadow-[#afdde5] grid place-content-center"><span className="material-symbols-outlined text-9xl scale-[4] text-white md:scale-[7]">login</span></div>
-      <div className="text-lg text-black font-semibold mt-4 mx-auto">Welcome Again, {userData.username}</div>
-      <div className="text-lg text-black font-semibold mx-auto">Successfully Logged In</div>
-      <Link href={"/"}> <div className="w-40 h-10 bg-[#024950] text-lg grid place-content-center rounded-xl my-7 mx-auto text-white ">Continue</div> </Link>
-    </div>)
-  }
+ 
   const onSubmit=async(data)=>{
+  
     setLoading(true);
     console.log(data);
     fetch("/api/authorize", { 
@@ -44,7 +35,7 @@ const Login = () => {
     .then(response => response.json())
     .then(res => {
       if(res.status==200){
-        setUserData(res.data);console.log(res);
+        setUserData(res.data);
         setLoading(false);
         setSuccess(true);
         setError(false);
@@ -58,11 +49,13 @@ const Login = () => {
    
   
   }
+
+
   return (
     <>
       
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="w-11/12 md:w-[80vmin] h-max mx-auto my-10 shadow-lg shadow-[#003135] rounded-3xl flex flex-col justify-center px-6 ">
+      <div className="w-full md:w-[80vmin] h-max mx-auto my-2 md:my-10 md:shadow-lg shadow-[grey] rounded-3xl flex flex-col justify-center px-6 ">
         <div className="w-11/12 md:w-[80vmin] h-max mx-auto my-5  flex ">
           <div className='flex flex-col text-4xl font-bold my-9 '><span>Hola,</span>
             <span>Welcome Back</span>
@@ -71,21 +64,21 @@ const Login = () => {
         </div>
         <div className='w-full flex flex-col justify-center h-max gap-5'>
           <div className="w-[80vmin] md:w-3/5 h-10 rounded-xl">
-          <input type="text" className="w-full h-10 rounded-xl bg-[#e7e7e7] outline-[#003135] border-none px-3 text-wrap outline-2" placeholder='Enter Username' {...register("username",{required:true})} />
+          <input type="text" className="w-full h-10 rounded-xl bg-[#e7e7e7] outline-[black] border-none px-3 text-wrap outline-2" placeholder='Enter Username' {...register("username",{required:true})} />
           </div>
-          <div className="w-[80vmin] md:w-3/5 h-10 rounded-xl  outline-[#003135] flex justify-between">
-           <input type={hidePass ? "password" : "text"} className="w-[83%] h-10 rounded-xl bg-[#e7e7e7] outline-2 outline-[#003135] border-none px-3 " placeholder='Enter Your Password' {...register("password", { required: "All fields are required"})}/>
-            <div className=" w-[14%] h-full rounded-xl hover:outline hover:outline-2 hover:outline-[#003135] grid place-content-center bg-[#e7e7e7]" onClick={() => sethidePass(!hidePass)} onMouseOver={() => sethidePass(false)} onMouseLeave={() => sethidePass(true)}>
+          <div className="w-[80vmin] md:w-3/5 h-10 rounded-xl  outline-[black] flex justify-between">
+           <input type={hidePass ? "password" : "text"} className="w-[83%] h-10 rounded-xl bg-[#e7e7e7] outline-2 outline-[black] border-none px-3 " placeholder='Enter Your Password' {...register("password", { required: "All fields are required"})}/>
+            <div className=" w-[14%] h-full rounded-xl hover:outline hover:outline-2 hover:outline-[black] grid place-content-center bg-[#e7e7e7]" onClick={() => sethidePass(!hidePass)} onMouseOver={() => sethidePass(false)} onMouseLeave={() => sethidePass(true)}>
               <span className="material-symbols-outlined">
               {hidePass ? "visibility" : "visibility_off"}
             </span>
             </div>
           </div>
-          <div className='flex items-center gap-1 text-sm'> <input type="checkbox" name='Remember' /> <label htmlFor="Remember" >Remember Me</label></div>
+          <div className='flex items-center gap-1 text-sm'> <input type="checkbox" id='Remember' name='Remember' {...register("rememberMe")}/> <label htmlFor="Remember" >Remember Me</label></div>
         </div>
         {error && <ErrorPopup/>}
-        <div><button type="submit" className='w-32 h-9 grid place-content-center bg-[#003135] rounded-full text-white my-10 active:bg-slate-600 ' >{loading?<LoadingBar/>:"LOG IN"}</button></div>
-        <div className='flex justify-start text-sm gap-1 mb-11'><span>Don't have an account? </span><span><Link href="/signup" className='text-[#003135] active:text-slate-600'>Create One</Link></span></div>
+        <div><button type="submit" className='w-32 h-9 grid place-content-center bg-[black] rounded-full text-white my-10 active:bg-lime-400' >{loading?<LoadingBar/>:"LOG IN"}</button></div>
+        <div className='flex justify-start text-sm gap-1 mb-11'><span>Don't have an account? </span><span><Link href="/signup" className='text-[black] active:text-slate-600'>Create One</Link></span></div>
       </div >
       </form>
     </>
@@ -94,7 +87,7 @@ const Login = () => {
 const LoadingBar=()=>{
   return(
     <>
-    <div className="w-8 h-8 rounded-full border-4 border-white border-t-0 animate-spin"></div>
+    <div className="w-7 h-7 rounded-full border-4 border-white border-t-black animate-spin"></div>
     </>
   )
 }

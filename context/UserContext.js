@@ -6,7 +6,6 @@ const UserContext = createContext(null);
 const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [blogs,setBlogs]=useState(null);
-
     return (
         <UserContext.Provider value={{ user, setUser }}>
             <BlogContext.Provider value={{blogs,setBlogs}}>

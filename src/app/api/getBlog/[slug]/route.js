@@ -34,54 +34,23 @@ const model = async () => {
     console.log("Model not Created : ", e);
   }
 }
-async function publishBlog(data) {
-  const { username, image, title, category, content, created } = await data;
-
+ 
+export async function GET(req,{params}){
   await connectToDb();
   const Model = await model();
+  const slug= params.slug;
   try {
-    const newDoc = await new Model({
-      username: username,
-      image: image,
-      title: title,
-      category: category,
-      content: content,
-    });
-    console.log(newDoc);
-    await newDoc.save();
-    return 200;
-
-  } catch (e) {
-    console.error("Error Occured : " + e);
-    return 404;
-  }
-  finally {
-    mongoose.disconnect();
-  }
-}
-export async function GET(){
-  await connectToDb();
-  const Model = await model();
-  try {
-      const items = await Model.find({})
-      
+      const items = await Model.findOne({_id:slug});
       if (!items) {
           return NextResponse.json({ status: 404, error: 'Not Found' });
       }
-      return NextResponse.json({ status: 200, data: items });
+      return NextResponse.json({ status: 200, data:items});
   } catch (e) {
       console.error("Error fetching data: ", e);
-      return NextResponse.json({ status: 503, error: 'Server Error' });
+      return NextResponse.json({ status: 500, error: 'Server Error' });
   } finally {
       // mongoose.disconnect();
   }
 
   }
-
-export async function POST(req) {
-  let data = await req.json();
-  console.log(data);
-  const status = await publishBlog(data);
-  return NextResponse.json({ status: status });
-}
 
