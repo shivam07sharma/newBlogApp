@@ -2,6 +2,31 @@
 import { createContext, useState } from 'react';
 import BlogContext from './BlogData';
 const UserContext = createContext(null);
+const blog=[{
+    image:null,
+    title:"Lorerem ipsum dolor sit amet",
+    content:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, alias consequatur. Quibusdam in modi pariatur cumque eum, corrupti eius praesentium odit quae laborum impedit amet vero nesciunt repudiandae excepturi! Architecto aut numquam, quaerat perferendis ea aperiam debitis ullam eius nobis rem dolorum incidunt hic voluptate omnis enim beatae soluta repellendus?",
+    category:"News",
+    date:Date.now(),
+    username:"shivam"
+},
+{
+    image:null,
+    title:"Lorerem ipsum dolor sit amet",
+    content:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, alias consequatur. Quibusdam in modi pariatur cumque eum, corrupti eius praesentium odit quae laborum impedit amet vero nesciunt repudiandae excepturi! Architecto aut numquam, quaerat perferendis ea aperiam debitis ullam eius nobis rem dolorum incidunt hic voluptate omnis enim beatae soluta repellendus?",
+    category:"News",
+    date:Date.now(),
+    username:"shivam"
+}
+,{
+    image:null,
+    title:"Lorerem ipsum dolor sit amet",
+    content:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, alias consequatur. Quibusdam in modi pariatur cumque eum, corrupti eius praesentium odit quae laborum impedit amet vero nesciunt repudiandae excepturi! Architecto aut numquam, quaerat perferendis ea aperiam debitis ullam eius nobis rem dolorum incidunt hic voluptate omnis enim beatae soluta repellendus?",
+    category:"News",
+    date:Date.now(),
+    username:"shivam"
+}]
+
 const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [blogs,setBlogs]=useState(null);
