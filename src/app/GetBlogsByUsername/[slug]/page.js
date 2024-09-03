@@ -28,7 +28,7 @@ const GetMyBlogs = () => {
         getBlogs();
     },[slug])
   return (
-     <>
+    user ? <>
      <div className='w-screen h-max flex  justify-evenly flex-wrap'>
     {loading &&<LoadingBar/>}
         {myBlogs && myBlogs.map(item=>(
@@ -36,6 +36,8 @@ const GetMyBlogs = () => {
   ))}
      </div>
      </>
+     :
+     <><h1>Please Login to Continue...</h1></>
   )
 }
 

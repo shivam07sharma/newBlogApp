@@ -54,3 +54,17 @@ export async function GET(req,{params}){
 
   }
 
+ export async function DELETE(req,{params}) {
+    await connectToDb();
+    const Model=await model();
+    try{
+      const item=await Model.findByIdAndDelete(params.slug)
+      if(item){
+        return NextResponse.status(200).json({status:200,Message:"Blog Deletion Successfull"})
+      }
+    }
+    catch(e){
+      console.error("Error");
+      return NextResponse.status(500).json({status:500,Message:"Internal Server Error"})
+    }
+ }

@@ -1,10 +1,10 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
-const BlogPreview = ({ image, title, content, author, date,category, id }) => {
+const BlogPreview = ({ image, title, content, author, date, category, id }) => {
   const ellipsisStyle = {
     display: '-webkit-box',
-    WebkitLineClamp: 4,
+    WebkitLineClamp: 3,
     WebkitBoxOrient: 'vertical',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -18,14 +18,14 @@ const BlogPreview = ({ image, title, content, author, date,category, id }) => {
         </div>
         <div className="mx-2 w-7/12 flex flex-col ">
           <div className=' px-3 mb-2 w-fit h-fit bg-black rounded-md text-white font-medium text-sm grid place-content-center'>{category}</div>
-          <div className="w-full text-base md:text-lg font-semibold text-black max-h-16 overflow-hidden text-ellipsis mb-2 pr-2">
+          <div className="w-full text-base md:text-lg font-semibold text-black max-h-12 md:max-h-16 overflow-hidden text-ellipsis mb-2 pr-2">
             {title.toUpperCase()}
           </div>
           <div className='w-full text-xs text-slate-600 max-h-12 overflow-hidden text-ellipsis pr-2' style={ellipsisStyle}>
             {content}
           </div>
           <div className='w-full  my-2 flex justify-between'>
-            <div className="min-w-fit max-w-2/3 text-sm font-semibold">~{author||"author"}</div>
+           <Link href={"/GetBlogsByUsername/"+author}> <div className="min-w-fit max-w-2/3 text-sm font-semibold">~{author||"author"}</div></Link>
           </div>
         </div>
       </div></Link>

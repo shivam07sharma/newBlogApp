@@ -2,15 +2,17 @@
 import React, { useContext, useState } from 'react'
 import Link from 'next/link'
 import { UserContext } from '../../../context/UserContext'
+import BlogContext from '../../../context/BlogData'
 const Navbar = () => {
   const [showSidebar, setSidebar] = useState(false);
+  const {setBlogs}=useContext(BlogContext);
   const { user, setUser } = useContext(UserContext);
   const Sidebar = () => {
     const MenuButton=({route,symbol,text})=>{
       return(
         <>
           <Link href={route} onClick={()=>setSidebar(!showSidebar)} >
-              <div className='border-b-2 border-white text-base font-normal flex items-center p-4'>
+              <div className='border-b-2 border-white text-base font-normal flex items-center p-4 hover:bg-gray-700'>
                 <span className='material-symbols-outlined w-10 text-lime-400'>{symbol}</span><span>{text}</span>
               </div>
             </Link>
@@ -19,11 +21,11 @@ const Navbar = () => {
     }
     return (
       <>
-        <div className={`h-screen bg-black fixed w-56 md:w-72 z-10 top-11 md:top-12 md:right-0`}>
+        <div className={`h-screen bg-black fixed w-56 md:w-72 z-10 top-11 md:top-12 md:right-0 transition-all `}>
           <ul className='flex flex-col justify-start border-t-2 mt-1 md:mt-2 border-white'>
             <li><MenuButton route={"/"} symbol={"home"} text={"HOME"}/></li>
             {user ? 
-          <><li><MenuButton onClick={()=>setUser(null)} route={"/"} symbol={"logout"} text={"LOGOUT"}/></li>
+          <><li><MenuButton onClick={()=>{setUser(null);setBlogs(null)}} route={"/"} symbol={"logout"} text={"LOGOUT"}/></li>
             <li><MenuButton route={"/Newpost"} symbol={'add_circle'} text={'NEW POST'}/></li>
             <li><MenuButton route={"/GetBlogsByUsername/"+user.username} symbol={'person'} text={'MY BLOGS'}/></li></>
 
@@ -50,7 +52,7 @@ const Navbar = () => {
         {user && <>
           <Link href={"/"}><li className='text-sm  hover:bg-[#bababa36] font-normal rounded-3xl py-2 px-5 transition-all'>HOME</li></Link>
           <Link href={"/GetBlogsByUsername/"+user.username}><li className='text-sm  hover:bg-[#bababa36] font-normal rounded-3xl py-2 px-5 transition-all'>MY BLOGS</li></Link>
-          <Link href={"/"}><li className='text-sm  hover:bg-[#bababa36] font-normal rounded-3xl py-2 px-5 transition-all flex items-center' onClick={() => {setUser(null) }}>LOGOUT </li></Link>
+          <Link href={"/"}><li className='text-sm  hover:bg-[#bababa36] font-normal rounded-3xl py-2 px-5 transition-all flex items-center' onClick={()=>{setUser(null);setBlogs(null)}} >LOGOUT </li></Link>
         </>}
         {!user && <>
 

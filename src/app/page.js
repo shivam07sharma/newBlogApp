@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import MyProfile from "./components/MyProfile";
 import BlogPreview from "./components/blogPreview";
 import BlogContext from "../../context/BlogData"
-import Login from "./login/page";
 export default function Home() {
   const [Data,setData]=useState(null);
   const {user}=useContext(UserContext);
@@ -13,13 +12,13 @@ export default function Home() {
  const LoadingBar=()=>{
   return (
    <>
-    <div className="w-16 md:w-24 h-16 md:h-24 rounded-full mt-[30%] md:mt-[10%] mx-auto border-4 animate-spin border-black border-t-lime-400"></div>
+    <div className="w-14 md:w-20 h-14 md:h-20 rounded-full mt-[30%] md:mt-[10%] mx-auto border-4 animate-spin border-black border-r-0 border-t-0"></div>
     </>
   )
  }
   useEffect(()=>{
     const getData=async()=>{
-      setLoading(true)
+      setLoading(true);
       fetch("/api/Blogs")
     .then((resp)=> resp.json())
     .then((res)=>{
@@ -29,11 +28,10 @@ export default function Home() {
     }})
    .catch((error) => console.error("Error fetching blog data:", error));
   }
-  user && getData();
+  getData();
   },[user])
   return (
    <>
-   {!user && <Login/>}
   {user &&<MyProfile/>}
   {loading && <LoadingBar/>}
   {blogs && <div key={blogs} className="w-screen h-max my-3 flex justify-evenly flex-wrap gap-4"> 

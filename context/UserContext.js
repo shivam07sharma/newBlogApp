@@ -1,7 +1,6 @@
 "use client"
 import { createContext, useState } from 'react';
 import BlogContext from './BlogData';
-
 const UserContext = createContext(null);
 const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -16,3 +15,5 @@ const UserProvider = ({ children }) => {
 };
 
 export { UserContext, UserProvider };
+
+
