@@ -14,10 +14,9 @@ async function main(data) {
             isVerified:{type:Boolean,default:false},
             created:{type:Date,default:Date.now()}
         })
-        console.log("username:",username,"\nPass:",password);
+
     const Model = mongoose.models.UserAuth || mongoose.model('UserAuth', schema);
     const document = await Model.findOne({username:username,password:password});
-    console.log(document);
     if(document){
       return {status:200,data:document};
     }

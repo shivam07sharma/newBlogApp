@@ -21,8 +21,8 @@ const Navbar = () => {
     }
     return (
       <>
-        <div className={`h-screen bg-black fixed w-56 md:w-72 z-10 top-11 md:top-12 md:right-0 transition-all `}>
-          <ul className='flex flex-col justify-start border-t-2 mt-1 md:mt-2 border-white'>
+        <div className={`h-screen bg-black fixed w-56 md:w-72 z-10 top-14 md:right-0 transition-all `}>
+          <ul className='flex flex-col justify-start border-t-2  border-white'>
             <li><MenuButton route={"/"} symbol={"home"} text={"HOME"}/></li>
             {user ? 
           <><li><MenuButton onClick={()=>{setUser(null);setBlogs(null)}} route={"/"} symbol={"logout"} text={"LOGOUT"}/></li>
@@ -44,7 +44,7 @@ const Navbar = () => {
     )
   }
   return (
-    <div className='w-full bg-black h-12 max-h-max md:h-14 flex justify-between items-center text-white sticky z-50 top-0 overflow-hidden'>
+    <div className='w-full bg-black h-14 md:h-14 flex justify-between items-center text-white sticky z-50 top-0 overflow-hidden'>
       <div className='md:hidden mx-5 text-2xl' onClick={() =>{ setSidebar(!showSidebar)}}><span className="material-symbols-outlined font-light scale-125">menu</span></div>
       {showSidebar &&<Sidebar />}
       <div className="mx-5 md:mx-9 font-semibold text-xl">BlogShare</div>
