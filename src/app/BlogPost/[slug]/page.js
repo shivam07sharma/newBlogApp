@@ -96,7 +96,7 @@ const FullPost = () => {
       </>
     )
   }
-
+ 
   return (
     <>
       {Loading && <LoadingBar />}
@@ -113,16 +113,20 @@ const FullPost = () => {
             <div className="w-fit h-fit px-2 py-1 text-gray-700 mr-5 hover:bg-lime-400 rounded-md text- font-medium">{(blog.created).slice(0,10)}</div>
           </div>
           <div className="w-full h-max px-5 py-3 my-2 text-base md:text-lg text-gray-600">
-            {blog.content}
+            {
+            (blog.content.split("\n")).map(para=>(
+              <div className='mt-5'>{para}</div>
+              
+            ))}
           </div>
-          <div className='w-max px-5 mx-5 py-2 my-5 mb-7 rounded-lg text-base font-base bg-black  hover:text-lime-500 transition-all text-white'>{"@" + blog.username}</div>
+          <div className=' px-5 mx-5 my-5 mb-5 rounded-lg text-base font-base  hover:text-lime-500 transition-all text-black w-11/12 text-right '>{"@" + blog.username}</div>
           <div className='w-max mx-5 h-max p-1 text-lg text-white  text-center my-8 rounded-md flex justify-start gap-3'>
                   <a href={`https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwebblogshare.netlify.app/BlogPost/${blog._id}&title=${encodeURIComponent(blog.title)}&source=LinkedIn`} target="_blank">
                   <div className='h-9 w-9 my-1 rounded-xl overflow-hidden hover:scale-105 transition-all'>
                   <img src="/socialmedia/linkedin.png" alt="" className='w-full h-full mix-blend-screen scale-110'/>
-                </div> 
+                </div>
                 </a>
-                <a href={`https://wa.me/?text=${share}${blog.username}%20https%3A%2F%2Fwebblogwiter/BlogPost/${blog._id}`} target="_blank">
+                <a href={`https://wa.me/?text=${share}${blog.username}%20https%3A%2F%2Fwebblogshare/BlogPost/${blog._id}`} target="_blank">
                   <div className='h-9 w-9 m-1 rounded-xl overflow-hidden'>
                   <img src="/socialmedia/wsp.png" alt="" className='w-full h-full mix-blend-screen scale-125'/>
                 </div> 

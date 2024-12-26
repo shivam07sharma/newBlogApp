@@ -8,12 +8,15 @@ const Navbar = () => {
   const {setBlogs}=useContext(BlogContext);
   const { user, setUser } = useContext(UserContext);
   const Sidebar = () => {
+    const shareMessage="Hey There! Follow this link to join the amazing community of blog writers, BlogShare - https://webblogshare.netlify.app";
     const MenuButton=({route,symbol,text})=>{
       return(
         <>
           <Link href={route} onClick={()=>setSidebar(!showSidebar)} >
-              <div className='border-b-2 border-white text-base font-normal flex items-center p-4 hover:bg-gray-700'>
-                <span className='material-symbols-outlined w-10 text-lime-400'>{symbol}</span><span>{text}</span>
+              <div className='text-base font-normal flex items-center pt-4 p-2 rounded-full'>
+                <div className='h-5/6 w-11/12 bg-gray-950 p-3 hover:bg-gray-800 shadow-sm shadow-gray-700 transition-all active:bg-gray-700 rounded-full'>
+                <span className='material-symbols-outlined w-12 overflow-hidden text-lime-400'>{symbol}</span><span>{text}</span>
+                </div>
               </div>
             </Link>
         </>
@@ -33,9 +36,9 @@ const Navbar = () => {
             <li><MenuButton route={"/login"} symbol={"login"} text={"LOGIN"}/></li>
             <li><MenuButton route={"/signup"} symbol={'group_add'} text={'SIGNUP'}/></li></>}
             <li><MenuButton route={"/About"} symbol={'description'} text={'ABOUT'}/></li>
-            <li><MenuButton route={"/ContactUs"} symbol={'call'} text={'CONTACT US'}/></li>
-            <li><MenuButton route={"/ContactUs"} symbol={'help'} text={'HELP'}/></li>
-            <li><MenuButton route={"/"} symbol={'share'} text={'SHARE'}/></li>
+            <li><MenuButton route={"https://shivamsprofile.netlify.app/ContactMe"} symbol={'call'} text={'CONTACT US'}/></li>
+            <li><MenuButton route={"https://shivamsprofile.netlify.app/ContactMe"} symbol={'help'} text={'HELP'}/></li>
+            <li><MenuButton onClick={()=>{navigator.clipboard.writeText(shareMessage)}} route={"/"} symbol={'share'} text={'SHARE'}/></li>
 
 
             </ul>
